@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Pure Motret adalah studio foto di Palu untuk momen yang ingin Anda simpan selamanya."
+    />
+    <title>Pure Motret | Studio Foto Palu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #17221f;
+        --muted: #67716b;
+        --cream: #f5f3ec;
+        --lime: #d9f05d;
+        --orange: #e66d44;
+        --line: rgba(23, 34, 31, 0.14);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--cream);
+        font-family: "Manrope", sans-serif;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .wrap {
+        max-width: 1180px;
+        margin: auto;
+        padding: 0 28px;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(245, 243, 236, 0.88);
+        border-bottom: 1px solid transparent;
+        backdrop-filter: blur(14px);
+        transition:
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .site-header.scrolled {
+        border-color: var(--line);
+        box-shadow: 0 8px 24px rgba(23, 34, 31, 0.06);
+      }
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 25px 0;
+        font-size: 13px;
+      }
+      .brand {
+        font-size: 18px;
+        font-weight: 800;
+        letter-spacing: -0.7px;
+      }
+      .brand span {
+        color: var(--orange);
+      }
+      .navlinks {
+        display: flex;
+        gap: 30px;
+        color: var(--muted);
+      }
+      .navlinks a:hover {
+        color: var(--ink);
+      }
+      .menu-toggle {
+        display: none;
+        border: 0;
+        background: transparent;
+        color: var(--ink);
+        font:
+          700 12px "DM Mono",
+          monospace;
+        cursor: pointer;
+      }
+      .nav-cta,
+      .button {
+        background: var(--ink);
+        color: white;
+        padding: 13px 19px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .hero {
+        display: grid;
+        grid-template-columns: 1.03fr 0.97fr;
+        gap: 58px;
+        align-items: center;
+        padding: 48px 0 92px;
+      }
+      .hero > div:first-child {
+        animation: rise-in 0.8s both;
+      }
+      .hero-image {
+        animation: image-in 1s 0.12s both;
+      }
+      .eyebrow {
+        color: var(--orange);
+        font:
+          500 11px "DM Mono",
+          monospace;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+      }
+      h1 {
+        max-width: 620px;
+        margin: 18px 0 22px;
+        font-size: clamp(46px, 6.2vw, 82px);
+        line-height: 0.98;
+        letter-spacing: -5px;
+      }
+      .hero-copy {
+        max-width: 440px;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.8;
+      }
+      .actions {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        margin-top: 30px;
+      }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        background: var(--orange);
+        padding: 16px 22px;
+      }
+      .button:hover {
+        background: #c95732;
+      }
+      .text-link {
+        border-bottom: 1px solid var(--ink);
+        padding: 4px 0;
+        margin-left: 10px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .hero-image {
+        position: relative;
+        height: 510px;
+        background: url("https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&q=85")
+          center/cover;
+      }
+      .hero-image:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        margin: 14px;
+      }
+      .stamp {
+        position: absolute;
+        z-index: 1;
+        left: -28px;
+        bottom: 28px;
+        width: 112px;
+        height: 112px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--lime);
+        font-size: 11px;
+        text-align: center;
+        line-height: 1.35;
+        transform: rotate(-12deg);
+      }
+      .stats {
+        display: flex;
+        gap: 55px;
+        padding: 22px 0 0;
+        border-top: 1px solid var(--line);
+        margin-top: 55px;
+      }
+      .stat strong {
+        display: block;
+        font-size: 23px;
+        letter-spacing: -1px;
+      }
+      .stat span {
+        color: var(--muted);
+        font:
+          10px "DM Mono",
+          monospace;
+        text-transform: uppercase;
+      }
+      .band {
+        background: var(--ink);
+        color: var(--cream);
+        padding: 76px 0;
+      }
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        margin-bottom: 38px;
+      }
+      h2 {
+        max-width: 510px;
+        margin: 12px 0 0;
+        font-size: 38px;
+        line-height: 1.08;
+        letter-spacing: -2px;
+      }
+      .section-note {
+        max-width: 275px;
+        color: #aeb8af;
+        font-size: 13px;
+        line-height: 1.7;
+      }
+      .services {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: rgba(255, 255, 255, 0.18);
+      }
+      .service {
+        min-height: 218px;
+        padding: 25px;
+        background: var(--ink);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        transition:
+          background 0.3s ease,
+          transform 0.3s ease;
+      }
+      .service:hover {
+        background: #24322e;
+        transform: translateY(-5px);
+      }
+      .service-number {
+        color: var(--lime);
+        font:
+          11px "DM Mono",
+          monospace;
+      }
+      .service h3 {
+        margin: 54px 0 10px;
+        font-size: 19px;
+      }
+      .service p {
+        margin: 0;
+        color: #aeb8af;
+        font-size: 12px;
+        line-height: 1.7;
+      }
+      .gallery-section {
+        padding: 84px 0;
+      }
+      .gallery {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr 0.9fr;
+        grid-template-rows: 205px 205px;
+        gap: 12px;
+      }
+      .gallery div {
+        background-position: center;
+        background-size: cover;
+        transition:
+          transform 0.5s ease,
+          filter 0.5s ease;
+        overflow: hidden;
+      }
+      .gallery div:hover {
+        transform: scale(1.025);
+        filter: saturate(1.15);
+      }
+      .gallery .large {
+        grid-row: span 2;
+        background-image: url("https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkqFmD9Ju5Km7KrsRBiKNCpKEgycOcwsagCmAsk5bSSj_II-bcxV1x5cJz1W57LebyRmXBsESFKuXrhEWVueobGydBZ504PqgU9bwQ0UL8kOAQxdBW016zGnk_7C0_Jwx0mgt2uWw=w1200-h960-k-no");
+      }
+      .gallery .portrait {
+        background-image: url("https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnK2akzqrSyIFMf6JmQprUWZ1zyysNEZUYEZRjhEb_bjTajEVee_zx3gzmsZR1nAxCYDn6vnWLYaXIjexxPUlH2KveOUixj1yNqH05kAwKiB-n7PGX2iQpCFYAVGxujXZxZbJo=w1200-h1150-k-no");
+      }
+      .gallery .detail {
+        background-image: url("https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmh46-uJcqkxdcDZFLKU7loKrCYQLqdu1jt_spp0ggbRRN3QiZWVIazIIMoBhYNxzUkb_-yyxK-ZibODEG1HQSsMHnMX2I9bu3M7FpDCE3XVJJOxryUr8hx-pJ9RG0zv-Q6YB_i=w1200-h800-k-no");
+      }
+      .gallery .studio {
+        background-image: url("https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkmm0OWaBA-tMuY-9cEcpke35GVNma6-dHUZKvLdCG22UTGXv31hweEopxEKI4BRSuBA7UwxK2w8y_NuES3HBXirEvjzmcy16W_dNthdASuhjgvh07C-seeBGZAUy0Mzq8wrOz2cg=w1200-h800-k-no");
+      }
+      .gallery .camera {
+        background-image: url("https://lh3.googleusercontent.com/gps-cs-s/AHRPTWniPWLQrtXCxXYZTZDIlj6gy8oKCdUDvX8gONJeT6hXGPBHZGZRLeWgzrUg9jP49sHiX_zE4dqDZTno2AroU4pGoEmG35zsp1w2H9KKX8ARU_E8Kjt40skx6p-r9YFu69qa9-HCi76FV5HY=w1200-h857-k-no");
+      }
+      .location {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 70px;
+        padding: 80px 0 100px;
+        border-top: 1px solid var(--line);
+      }
+      .location h2 {
+        font-size: 34px;
+      }
+      .address {
+        margin-top: 30px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.8;
+      }
+      .hours {
+        display: grid;
+        gap: 14px;
+        margin-top: 29px;
+        font:
+          11px "DM Mono",
+          monospace;
+      }
+      .hours div {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--line);
+      }
+      footer {
+        background: var(--lime);
+        padding: 26px 0;
+        font-size: 11px;
+      }
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      @keyframes rise-in {
+        from {
+          opacity: 0;
+          transform: translateY(22px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes image-in {
+        from {
+          opacity: 0;
+          transform: translateX(24px) scale(0.97);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0) scale(1);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @media (max-width: 760px) {
+        .wrap {
+          padding: 0 20px;
+        }
+        .navlinks {
+          display: none;
+          position: absolute;
+          top: 72px;
+          left: 20px;
+          right: 20px;
+          padding: 18px;
+          flex-direction: column;
+          gap: 16px;
+          background: var(--cream);
+          border: 1px solid var(--line);
+          box-shadow: 0 14px 30px rgba(23, 34, 31, 0.1);
+        }
+        .navlinks.open {
+          display: flex;
+        }
+        .menu-toggle {
+          display: block;
+        }
+        nav {
+          position: relative;
+          gap: 14px;
+        }
+        nav .nav-cta {
+          margin-left: auto;
+        }
+        .brand {
+          white-space: nowrap;
+        }
+        .menu-toggle[aria-expanded="true"] {
+          color: var(--orange);
+        }
+        .site-header nav {
+          padding: 18px 0;
+        }
+        .nav-cta {
+          padding: 11px 13px;
+        }
+        .hero {
+          display: flex;
+          flex-direction: column;
+          gap: 36px;
+          padding: 34px 0 70px;
+          align-items: stretch;
+        }
+        h1 {
+          letter-spacing: -3px;
+        }
+        .hero-image {
+          height: 370px;
+          margin-left: 18px;
+        }
+        .stamp {
+          left: -18px;
+        }
+        .stats {
+          gap: 25px;
+          margin-top: 35px;
+        }
+        .section-head,
+        .location {
+          display: block;
+        }
+        h2 {
+          font-size: 32px;
+        }
+        .section-note {
+          margin-top: 20px;
+        }
+        .services {
+          grid-template-columns: 1fr;
+        }
+        .service {
+          min-height: 165px;
+        }
+        .service h3 {
+          margin-top: 30px;
+        }
+        .gallery {
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 240px 160px 160px;
+        }
+        .gallery .large {
+          grid-column: span 2;
+          grid-row: auto;
+        }
+        .location {
+          padding: 65px 0 75px;
+        }
+        .location > div + div {
+          margin-top: 48px;
+        }
+        .footer-inner {
+          gap: 20px;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <nav>
+          <a class="brand" href="#top">pure<span>.</span>motret</a>
+          <div class="navlinks" id="main-menu">
+            <a href="#layanan">Layanan</a><a href="#karya">Karya</a
+            ><a href="#lokasi">Lokasi</a>
+          </div>
+          <a
+            class="nav-cta"
+            href="https://wa.me/6282322335665?text=Halo%20Pure%20Motret%2C%20saya%20ingin%20booking%20sesi%20foto."
+            >Booking sekarang ↗</a
+          >
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="main-menu"
+          >
+            Menu
+          </button>
+        </nav>
+      </div>
+    </header>
+    <main id="top">
+      <section class="wrap hero">
+        <div>
+          <div class="eyebrow">Studio foto · Palu, Sulawesi Tengah</div>
+          <h1>Wajahmu, cerita yang tak lekang.</h1>
+          <p class="hero-copy">
+            Ruang untuk menjadi diri sendiri. Kami bantu mengubah momen penting
+            menjadi foto yang terasa dekat, jujur, dan layak dikenang.
+          </p>
+          <div class="actions">
+            <a
+              class="button"
+              href="https://wa.me/6282322335665?text=Halo%20Pure%20Motret%2C%20saya%20ingin%20booking%20sesi%20foto."
+              >Mulai sesi <span>↗</span></a
+            ><a class="text-link" href="#karya">Lihat karya</a>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <strong>4.8/5</strong><span>Google rating</span>
+            </div>
+            <div class="stat">
+              <strong>322+</strong><span>Ulasan klien</span>
+            </div>
+            <div class="stat">
+              <strong>10.00</strong><span>Buka setiap hari</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-image">
+          <div class="stamp">CAPTURE<br />THE<br />REAL<br />YOU</div>
+        </div>
+      </section>
+      <section class="band reveal" id="layanan">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">Apa yang kami lakukan</div>
+              <h2>Foto yang terasa seperti kamu.</h2>
+            </div>
+            <p class="section-note">
+              Dari sesi personal sampai kebutuhan profesional, kami menyiapkan
+              ruang dan arahan agar kamu bisa tampil paling nyaman.
+            </p>
+          </div>
+          <div class="services">
+            <article class="service reveal">
+              <div class="service-number">01 / PERSONAL</div>
+              <h3>Portrait &amp; Wisuda</h3>
+              <p>
+                Ekspresi natural, arahan yang ringan, hasil yang tetap kamu.
+              </p>
+            </article>
+            <article class="service reveal">
+              <div class="service-number">02 / MOMENT</div>
+              <h3>Pre-wedding</h3>
+              <p>Merayakan cerita kalian dalam frame yang hangat dan intim.</p>
+            </article>
+            <article class="service reveal">
+              <div class="service-number">03 / PROFESSIONAL</div>
+              <h3>Produk &amp; Branding</h3>
+              <p>
+                Visual yang rapi untuk membuat bisnis kecilmu lebih dipercaya.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="wrap gallery-section reveal" id="karya">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Selected frames</div>
+            <h2>Beberapa cerita dari ruang kami.</h2>
+          </div>
+          <a
+            class="text-link"
+            href="https://www.instagram.com/puremotret/"
+            target="_blank"
+            rel="noreferrer"
+            >Instagram ↗</a
+          >
+        </div>
+        <div class="gallery">
+          <div class="large"></div>
+          <div class="portrait"></div>
+          <div class="detail"></div>
+          <div class="studio"></div>
+          <div class="camera"></div>
+        </div>
+      </section>
+      <section class="wrap location reveal" id="lokasi">
+        <div>
+          <div class="eyebrow">Datang dan berkenalan</div>
+          <h2>Temui kami di Pue Bongo.</h2>
+          <p class="address">
+            Jl. Pue Bongo No.14, Boyaoge,<br />Kec. Tatanga, Kota Palu,<br />Sulawesi
+            Tengah 94111
+          </p>
+          <a
+            class="button"
+            href="https://www.google.com/maps/place/Studio+Foto+Pure+Motret+Pue+Bongo/@-0.9104465,119.8555184,17.83z"
+            target="_blank"
+            rel="noreferrer"
+            >Buka Google Maps ↗</a
+          >
+        </div>
+        <div>
+          <div class="eyebrow">Jam operasional</div>
+          <div class="hours">
+            <div>
+              <span>Senin — Minggu</span><strong>10.00 — selesai</strong>
+            </div>
+            <div><span>WhatsApp</span><strong>0823 2233 5665</strong></div>
+            <div><span>Instagram</span><strong>@puremotret</strong></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="wrap footer-inner">
+        <strong>pure.motret / Studio Foto Palu</strong
+        ><span>Made for moments worth keeping.</span>
+      </div>
+    </footer>
+    <script>
+      const header = document.querySelector(".site-header");
+      const menu = document.querySelector(".navlinks");
+      const menuToggle = document.querySelector(".menu-toggle");
+
+      window.addEventListener(
+        "scroll",
+        () => {
+          header.classList.toggle("scrolled", window.scrollY > 12);
+        },
+        { passive: true },
+      );
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+        menuToggle.setAttribute("aria-expanded", String(!isOpen));
+        menuToggle.textContent = isOpen ? "Menu" : "Tutup";
+        menu.classList.toggle("open", !isOpen);
+      });
+
+      menu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.textContent = "Menu";
+          menu.classList.remove("open");
+        });
+      });
+
+      const revealItems = document.querySelectorAll(".reveal");
+      const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+
+      revealItems.forEach((item, index) => {
+        item.style.transitionDelay = `${Math.min(index * 70, 280)}ms`;
+        revealObserver.observe(item);
+      });
+    </script>
+  </body>
+</html>
